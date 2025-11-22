@@ -1,0 +1,23 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+      - id: check-executables-have-shebangs
+      - id: check-symlinks
+      - id: detect-private-key
+
+  - repo: https://github.com/markdownlint/markdownlint
+    rev: v0.12.0
+    hooks:
+      - id: markdownlint
+
+# Security
+  - repo: https://github.com/trufflesecurity/trufflehog
+    rev: v3.91.1
+    hooks:
+      - id: trufflehog
