@@ -50,7 +50,7 @@ variable "os_images" {
     }
 
     rocky-10 = {
-      image_path = "/var/lib/libvirt/images/Rocky-10-GenericCloud-Latest.x86_64.qcow2"
+      image_path = "/path/to/rocky-cloud-image.img"
       memory     = 3072
       vcpu       = 2
       disk_size  = 21474836480 # 20GB
@@ -61,7 +61,7 @@ variable "os_images" {
     }
 
     centos-stream-10 = {
-      image_path = "/var/lib/libvirt/images/CentOS-Stream-GenericCloud-10-latest.x86_64.qcow2"
+      image_path = "path/to/centos-cloud-image.img"
       memory     = 3072
       vcpu       = 2
       disk_size  = 21474836480 # 20GB
