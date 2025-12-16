@@ -21,21 +21,19 @@ resource "libvirt_volume" "vm_volumes" {
 resource "libvirt_cloudinit_disk" "cloudinit" {
   for_each = var.os_images
   name     = "cloudinit-${each.key}.iso"
-  user_data = templatefile("${path.module}/cloud-inits/${each.key}.cfg", {
-    hostname = each.key
-    username = var.vm_username
-    ssh_key  = var.ssh_public_key
-    password = var.vm_password
+  user_data = templatefile("${path.module}/cloud-inits/${each.key}.yaml", {
+    hostname = "${each.key}"
   })
   pool = "default"
 }
 
 # Create the VMs
 resource "libvirt_domain" "vm" {
-  for_each = var.os_images
-  name     = each.key
-  memory   = each.value.memory
-  vcpu     = each.value.vcpu
+  for_each   = var.os_images
+  name       = each.key
+  memory     = each.value.memory
+  vcpu       = each.value.vcpu
+  qemu_agent = true
 
   # Conditional CPU block – works because all attributes are optional in the provider
   cpu {
@@ -47,6 +45,7 @@ resource "libvirt_domain" "vm" {
   network_interface {
     network_name   = "terraform-network"
     wait_for_lease = true
+    hostname       = each.key
   }
 
   disk {
