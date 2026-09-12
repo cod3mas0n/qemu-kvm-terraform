@@ -1,6 +1,5 @@
 # TODO
 
-- [ ] Add network creation
+- [ ] Add network creation "terraform-network"
 - [ ] Redesign resources and vm configuration
-- [ ] Creation of network "terraform-network"
 - [ ] change os_images to vms
